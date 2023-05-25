@@ -1,0 +1,15 @@
+$lime: #C6FF00;
+
+body {
+    background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+}
+
+.lime-text {
+    color: $lime;
+    font-size: 7rem;
+
+    .breeze-text {
+        color: #007899;
+        font-weight: 700;
+    }
+}   
