@@ -19,19 +19,34 @@ const config = {
       {
         test: /\.(css|sass|scss)$/,
         use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader'
+          'style-loader',
+          'css-loader',
+          'sass-loader'
         ]
       }
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
       favicon: './public/favicon.png',
+      // templateContent: ({ htmlWebpackPlugin }) => `
+      //   <!DOCTYPE html>
+      //   <html>
+      //     <head>
+      //       <meta charset="UTF-8">  
+      //       <title>${htmlWebpackPlugin.options.title}</title>
+      //     </head>
+      //     <body>
+      //       <div id="root"></div>
+      //     </body>
+      //   </html>`,
+      template: './public/index.html',
     })
   ],
+  resolve: {
+    // extensions: ['.js', '.jsx'], 
+    extensions: [], // This is to enforce the use of explicit file extensions
+  }
 };
 
 module.exports = config;
