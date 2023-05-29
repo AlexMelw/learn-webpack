@@ -9,9 +9,15 @@
     "up-patch": "git restore --staged . && npm version patch --message \"UpRev %s\" --force",
 
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --config webpack.dev.config.js --open",
+
     "build-dev": "webpack --config webpack.dev.config.js",
     "build-prod": "webpack --config webpack.prod.config.js",
-    
+
+    "build-public": "webpack --config webpack.public.config.js --mode production",
+    "build-admin": "webpack --config webpack.admin.config.js --mode production",
+    "build": "npm run build-public && npm run build-admin",
+
     "cli": "node ./dist/main.js"
   },
   "keywords": [],
