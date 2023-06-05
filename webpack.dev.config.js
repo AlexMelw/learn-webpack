@@ -4,7 +4,7 @@ const baseConfig = require('./webpack.base.config.js');
 const config = {
   mode: 'development',
   devServer: {
-    contentBase: './dist',
+    static: './dist',
     // publicPath: '/assets/',
   }
 }
