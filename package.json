@@ -7,14 +7,24 @@
     "up-major": "git restore --staged . && npm version major --message \"UpRev %s\" --force",
     "up-minor": "git restore --staged . && npm version minor --message \"UpRev %s\" --force",
     "up-patch": "git restore --staged . && npm version patch --message \"UpRev %s\" --force",
+
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "echo Error: \"start\" script not defined && exit 1",
+
     "build-dev": "webpack --config webpack.dev.config.js",
     "build-prod": "webpack --config webpack.prod.config.js",
+
     "build-public": "webpack --config webpack.public.config.js --mode production",
     "build-admin": "webpack --config webpack.admin.config.js --mode production",
+
+    "build-frontend": "webpack --config webpack.frontend.config.js --mode production",
     "build-server": "webpack --config webpack.server.config.js --mode production",
-    "build": "npm run build-public && npm run build-admin && npm run build-server",
+
+    "build-admin-n-public": "npm run build-public && npm run build-admin",
+    "build-frontend-n-server": "npm run build-frontend && npm run build-server",
+
+    "build": "npm run build-frontend-n-server && npm run build-admin-n-public",
+
     "cli": "node ./dist/main.js"
   },
   "keywords": [],
