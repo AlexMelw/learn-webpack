@@ -4,7 +4,9 @@ const baseConfig = require('./webpack.base.config.js');
 const config = {
   mode: 'development',
   devServer: {
-    static: './dist',
+    static: {
+      directory: './public',
+    }
   }
 }
 

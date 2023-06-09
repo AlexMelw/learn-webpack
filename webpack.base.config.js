@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 const path = require('path');
 
 const config = {
@@ -8,6 +10,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js', // Output filename
+    clean: true, // Clean the output directory before emit.
   },
   module: {
     rules: [
@@ -42,6 +45,11 @@ const config = {
       //   </html>`,
       template: './public/index.html',
     })
+    , new CopyWebpackPlugin({
+      patterns: [
+        { from: 'public/fonts', to: 'assets/fonts' },
+      ],
+    }),
   ],
   resolve: {
     extensions: ['.js', '.jsx'], 
