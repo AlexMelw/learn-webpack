@@ -5,7 +5,6 @@ const config = {
   mode: 'development',
   devServer: {
     static: './dist',
-    // publicPath: '/assets/',
   }
 }
 

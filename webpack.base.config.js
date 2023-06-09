@@ -44,8 +44,8 @@ const config = {
     })
   ],
   resolve: {
-    // extensions: ['.js', '.jsx'], 
-    extensions: [], // This is to enforce the use of explicit file extensions
+    extensions: ['.js', '.jsx'], 
+    // extensions: [], // This is to enforce the use of explicit file extensions
   }
 };
 
