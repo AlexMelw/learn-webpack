@@ -16,22 +16,19 @@ const config = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
+        // use: ['babel-loader']
         use: [
           {
-            loader: require.resolve('babel-loader'),
+            loader: 'babel-loader',
             options: {
-              plugins: [
-                require.resolve('react-refresh/babel'),
-              ],
+              plugins: [ 'react-refresh/babel' ],
             }
           }
         ]
       }
     ],
   },
-  plugins: [
-    new ReactRefreshWebpackPlugin()
-  ],
+  plugins: [ new ReactRefreshWebpackPlugin() ],
 };
 
 module.exports = merge(baseConfig, config);
