@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { useLoginForm } from '../hooks/useLoginForm';
+import { Loading } from './Loading.jsx';
 
 export const App = ({ name }) => {
 
@@ -10,6 +12,13 @@ export const App = ({ name }) => {
         handlePasswordChange,
         handleLoginBtnClick,
     } = useLoginForm();;
+
+    const [Announcement, setAnnouncement] = useState(null);
+
+    setTimeout(() => {
+        import("./DynamicAnnouncement")
+            .then(({ DynamicAnnouncement }) => setAnnouncement(() => DynamicAnnouncement));
+    }, 3000);
 
     return (
         <div style={{
@@ -33,7 +42,7 @@ export const App = ({ name }) => {
                     style={{
                         textAlign: 'center',
                         margin: '0',
-                        marginTop: '9.5rem',                        
+                        marginTop: '9.5rem',
                     }}>
                     Hello, <span className='breeze-text'>{name}</span>!
                 </h2>
@@ -95,6 +104,9 @@ export const App = ({ name }) => {
                         Login
                     </button>
                 </div >
+
+                {Announcement && <Announcement /> || <Loading />}
+
             </div>
 
         </div>
