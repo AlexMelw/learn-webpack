@@ -1,21 +1,15 @@
 import React from 'react';
-import { useState } from 'react';
+import { useLoginForm } from '../hooks/useLoginForm';
 
 export const App = ({ name }) => {
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
 
-    const handleLoginChange = (event) => {
-        setLogin(event.target.value);
-    };
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
-
-    const handleLoginBtnClick = () => {
-        alert(`Hi dude\n\nLogin: ${login}\nPassword: ${password}`);
-    };
+    const {
+        login,
+        password,
+        handleLoginChange,
+        handlePasswordChange,
+        handleLoginBtnClick,
+    } = useLoginForm();;
 
     return (
         <div style={{
