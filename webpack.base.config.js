@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const path = require('path');
 
@@ -22,9 +23,10 @@ const config = {
       {
         test: /\.(css|sass|scss)$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
+          // 'style-loader',
+          { loader: MiniCssExtractPlugin.loader,  /* use either this or style-loader */ },
+          { loader: 'css-loader', },
+          { loader: 'sass-loader', }
         ]
       }
     ],
@@ -49,15 +51,19 @@ const config = {
       //     </body>
       //   </html>`,
       template: './public/index.html',
-    })
-    , new CopyWebpackPlugin({
+    }),
+    new CopyWebpackPlugin({
       patterns: [
         { from: 'public/fonts', to: 'assets/fonts' },
       ],
     }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].css',
+    }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'], 
+    extensions: ['.js', '.jsx'],
     // extensions: [], // This is to enforce the use of explicit file extensions
   }
 };
