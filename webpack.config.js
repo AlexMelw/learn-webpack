@@ -32,7 +32,7 @@ const frontendConfig = merge(baseConfig, {
             filename: 'main.js',
             libraryTarget: 'umd',
         },
-        name: 'frontend',
+        name: 'frontend-config',
     })
 
 const serverConfig = merge(baseConfig, {
@@ -43,7 +43,7 @@ const serverConfig = merge(baseConfig, {
         filename: 'main.js',
         libraryTarget: 'commonjs'
     },
-    name: 'server',
+    name: 'server-config',
 });
 
 module.exports = [

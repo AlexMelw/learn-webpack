@@ -9,7 +9,7 @@ const config = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js', // Output filename
+    filename: '[name].[contenthash].js',
     clean: true, // Clean the output directory before emit.
   },
   module: {
@@ -28,6 +28,11 @@ const config = {
         ]
       }
     ],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -18,10 +18,10 @@
     "build-admin-n-public": "npm run build-public && npm run build-admin",
     "build-frontend-n-server": "npm run build-frontend && npm run build-server",
     "build": "npm run build-frontend-n-server && npm run build-admin-n-public",
+    "build-experimental-frontend-only": "webpack --config webpack.config.js --mode development --config-name frontend-config",
+    "build-experimental-server-only": "webpack --config webpack.config.js --mode development --config-name server-config",
     "build-experimental-both-A": "webpack --config webpack.config.js --mode development",
     "build-experimental-both-B": "npm run build-experimental-frontend-only && npm run build-experimental-server-only",
-    "build-experimental-frontend-only": "webpack --config webpack.config.js --mode development --config-name frontend",
-    "build-experimental-server-only": "webpack --config webpack.config.js --mode development --config-name server",
     "cli": "node ./dist/main.js"
   },
   "keywords": [],
