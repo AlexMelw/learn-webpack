@@ -63,8 +63,16 @@ const config = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
     // extensions: [], // This is to enforce the use of explicit file extensions
+    extensions: ['.js', '.jsx'],
+    alias: {
+      '@hooks': path.resolve(__dirname, 'src/hooks/'),
+      '@components': path.resolve(__dirname, 'src/components/'),
+      '@pages': path.resolve(__dirname, 'src/pages/'),
+      '@utils': path.resolve(__dirname, 'src/utils/'),
+      '@styles': path.resolve(__dirname, 'src/styles/'),
+      '@assets': path.resolve(__dirname, 'src/assets/'),
+    }
   }
 };
 
