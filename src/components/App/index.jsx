@@ -1,7 +1,16 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy } from 'react';
 
-import { useLoginForm } from '../hooks/useLoginForm';
-import { Loading } from './Loading.jsx';
+import { useLoginForm } from '@hooks/useLoginForm';
+import { Loading } from '@components/Loading';
+
+// Do not declare lazy components inside other components
+// instead always declare them at the top level of the module
+const Announcement = lazy(() => new Promise(resolve => {
+    setTimeout(() => {
+        const promise = import('../Announcement/Default');
+        resolve(promise);
+    }, 3000);
+}));
 
 export const App = ({ name }) => {
 
@@ -12,13 +21,6 @@ export const App = ({ name }) => {
         handlePasswordChange,
         handleLoginBtnClick,
     } = useLoginForm();
-
-    const Announcement = lazy(() => new Promise(resolve => {
-        setTimeout(() => {
-            const promise = import('./Announcement/Default');
-            resolve(promise);
-        }, 3000);
-    }));
 
     return (
         <div style={{

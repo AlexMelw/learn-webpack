@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import "../styles.scss";
 
 export const Loading = () => {
     const [loadingText, setLoadingText] = useState("Loading");
-
 
     useEffect(() => {
 

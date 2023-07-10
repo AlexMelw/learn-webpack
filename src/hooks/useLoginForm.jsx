@@ -3,16 +3,15 @@ import { useState } from 'react';
 export const useLoginForm = () => {
 
     const [
-        login, // to be exported
+        login, 
         setLogin // private
     ] = useState('');
 
     const [
-        password, // to be exported
+        password, 
         setPassword // private
     ] = useState('');
 
-    // to be exported
     const handleLoginChange = (event) => {
         setLogin(event.target.value);
     }
