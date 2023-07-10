@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const DynamicAnnouncement = () => {
+export const Announcement = () => {
 
     return (
         <div style={{

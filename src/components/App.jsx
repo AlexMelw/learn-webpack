@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 
 import { useLoginForm } from '../hooks/useLoginForm';
 import { Loading } from './Loading.jsx';
@@ -11,14 +11,14 @@ export const App = ({ name }) => {
         handleLoginChange,
         handlePasswordChange,
         handleLoginBtnClick,
-    } = useLoginForm();;
+    } = useLoginForm();
 
-    const [Announcement, setAnnouncement] = useState(null);
-
-    setTimeout(() => {
-        import("./DynamicAnnouncement")
-            .then(({ DynamicAnnouncement }) => setAnnouncement(() => DynamicAnnouncement));
-    }, 3000);
+    const Announcement = lazy(() => new Promise(resolve => {
+        setTimeout(() => {
+            const promise = import('./Announcement/Default');
+            resolve(promise);
+        }, 3000);
+    }));
 
     return (
         <div style={{
@@ -105,7 +105,9 @@ export const App = ({ name }) => {
                     </button>
                 </div >
 
-                {Announcement && <Announcement /> || <Loading />}
+                <Suspense fallback={<Loading />}>
+                    <Announcement />
+                </Suspense>
 
             </div>
 
