@@ -20,10 +20,13 @@ export const App = ({ name }) => {
         handleLoginChange,
         handlePasswordChange,
         handleLoginBtnClick,
+        containerRef,
     } = useLoginForm();
 
     return (
-        <div style={{
+        <div
+            ref={containerRef}
+            style={{
             maxWidth: '50rem',
             minHeight: '50rem',
             margin: 'auto',
@@ -49,7 +52,9 @@ export const App = ({ name }) => {
                     Hello, <span className='breeze-text'>{name}</span>!
                 </h2>
 
-                <div style={{
+                <div
+                    data-test-id='login-form'
+                    style={{
                     marginTop: '2.625rem',
                     display: 'flex',
                     flexDirection: 'column',

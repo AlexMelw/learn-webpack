@@ -1,6 +1,9 @@
+import React from 'react';
 import { useState } from 'react';
 
 export const useLoginForm = () => {
+
+    const containerRef = React.useRef(null);
 
     const [
         login, 
@@ -21,6 +24,10 @@ export const useLoginForm = () => {
     }
 
     const handleLoginBtnClick = () => {
+        const loginForm = containerRef.current.querySelector('[data-test-id="login-form"]');
+
+        loginForm.parentNode.removeChild(loginForm);
+
         alert(`Hi dude\n\nLogin: ${login}\nPassword: ${password}`);
     }
 
@@ -30,5 +37,6 @@ export const useLoginForm = () => {
         handleLoginChange,
         handlePasswordChange,
         handleLoginBtnClick,
+        containerRef,
     }
 }
