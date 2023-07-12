@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 
 import { useLoginForm } from '@hooks/useLoginForm';
 import { Loading } from '@components/Loading';
+import { CursorPointLoggerWithCursorPosition } from '@components/CursorPointLogger';
 
 // Do not declare lazy components inside other components
 // instead always declare them at the top level of the module
@@ -27,17 +28,17 @@ export const App = ({ name }) => {
         <div
             ref={containerRef}
             style={{
-            maxWidth: '50rem',
-            minHeight: '50rem',
-            margin: 'auto',
-            position: 'relative',
-            marginTop: '50vh',
-            transform: 'translateY(-50%)',
-            background: 'linear-gradient(159deg, #C6FF00, #007899)',
-            borderRadius: '0.3125rem',
-            padding: '.75rem',
-            display: 'flex',
-        }}>
+                maxWidth: '50rem',
+                minHeight: '50rem',
+                margin: 'auto',
+                position: 'relative',
+                marginTop: '50vh',
+                transform: 'translateY(-50%)',
+                background: 'linear-gradient(159deg, #C6FF00, #007899)',
+                borderRadius: '0.3125rem',
+                padding: '.75rem',
+                display: 'flex',
+            }}>
             <div style={{
                 flex: '1 0 auto',
                 background: 'linear-gradient(to right, #58d8dc, #9afba0)',
@@ -55,12 +56,12 @@ export const App = ({ name }) => {
                 <div
                     data-test-id='login-form'
                     style={{
-                    marginTop: '2.625rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    textAlign: 'center'
-                }}>
+                        marginTop: '2.625rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        textAlign: 'center'
+                    }}>
                     <input
                         type='text'
                         placeholder='Login'
@@ -116,6 +117,10 @@ export const App = ({ name }) => {
                     <Announcement />
                 </Suspense>
 
+                <CursorPointLoggerWithCursorPosition
+                    overrideStyles={{
+                        color: 'rgb(13, 135, 139)',
+                    }} />
             </div>
 
         </div>
