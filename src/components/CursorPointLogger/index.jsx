@@ -1,8 +1,5 @@
 import React from 'react';
 import { withCursorPosition } from './withCursorPosition';
-import * as module from './withCursorPosition';
-
-console.log(module);
 
 const pointStyles = {
     textAlign: 'center',

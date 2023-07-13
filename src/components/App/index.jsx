@@ -3,6 +3,7 @@ import React, { Suspense, lazy } from 'react';
 import { useLoginForm } from '@hooks/useLoginForm';
 import { Loading } from '@components/Loading';
 import { CursorPointLoggerWithCursorPosition } from '@components/CursorPointLogger';
+import { UserDetailsDataFetcher } from '@components/UserDetailsDataFetcher';
 
 // Do not declare lazy components inside other components
 // instead always declare them at the top level of the module
@@ -22,6 +23,7 @@ export const App = ({ name }) => {
         handlePasswordChange,
         handleLoginBtnClick,
         containerRef,
+        user,
     } = useLoginForm();
 
     return (
@@ -44,6 +46,14 @@ export const App = ({ name }) => {
                 background: 'linear-gradient(to right, #58d8dc, #9afba0)',
                 paddingTop: '3.225rem',
             }}>
+                {user && user.auth && <p style={{
+                    textAlign: 'center',
+                    color: '#007899',
+                    fontWeight: 'bold',
+                }}>
+                    User {user.name} is authenticated
+                </p>}
+
                 <h2 className='lime-text'
                     style={{
                         textAlign: 'center',
@@ -121,6 +131,15 @@ export const App = ({ name }) => {
                     overrideStyles={{
                         color: 'rgb(13, 135, 139)',
                     }} />
+
+                {/* <UserDetailsDataFetcher userId={1}
+                    render={(data) => (
+                        <div>
+                            <p>Name: {data.name}</p>
+                            <p>Username: {data.username}</p>
+                            <p>Email: {data.email}</p>
+                        </div>
+                    )} /> */}
             </div>
 
         </div>
