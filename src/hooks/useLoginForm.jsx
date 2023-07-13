@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 
+import { useUser } from '@contexts/userContext';
+
 export const useLoginForm = () => {
 
     const containerRef = React.useRef(null);
@@ -29,7 +31,14 @@ export const useLoginForm = () => {
         loginForm.parentNode.removeChild(loginForm);
 
         alert(`Hi dude\n\nLogin: ${login}\nPassword: ${password}`);
+
+        setUser({
+            name: 'Alex',
+            auth: true,
+        });
     }
+
+    const { user, setUser } = useUser();
 
     return {
         login,
@@ -38,5 +47,6 @@ export const useLoginForm = () => {
         handlePasswordChange,
         handleLoginBtnClick,
         containerRef,
+        user,
     }
 }
