@@ -26,11 +26,14 @@ export const useLoginForm = () => {
     }
 
     const handleLoginBtnClick = () => {
-        const loginForm = containerRef.current.querySelector('[data-test-id="login-form"]');
 
-        loginForm.parentNode.removeChild(loginForm);
+        if (!login || !password) {
+            return false;
+        }
 
-        alert(`Hi dude\n\nLogin: ${login}\nPassword: ${password}`);
+        const container = containerRef.current;
+
+        container.parentNode.removeChild(container);
 
         setUser({
             name: 'Alex',
