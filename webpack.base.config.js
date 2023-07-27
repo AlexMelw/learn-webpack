@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const path = require('path');
 
@@ -63,6 +64,7 @@ const config = {
       chunkFilename: '[id].css',
     }),
     new LodashModuleReplacementPlugin(),
+    new BundleAnalyzerPlugin()
   ],
   resolve: {
     // extensions: [], // This is to enforce the use of explicit file extensions
