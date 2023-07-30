@@ -6,6 +6,39 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const path = require('path');
 
+const plugins = [
+  new HtmlWebpackPlugin({
+    favicon: './public/favicon.png',
+    // templateContent: ({ htmlWebpackPlugin }) => `
+    //   <!DOCTYPE html>
+    //   <html>
+    //     <head>
+    //       <meta charset="UTF-8">  
+    //       <title>${htmlWebpackPlugin.options.title}</title>
+    //     </head>
+    //     <body>
+    //       <div id="root"></div>
+    //     </body>
+    //   </html>`,
+    template: './public/index.html',
+  }),
+  new CopyWebpackPlugin({
+    patterns: [
+      { from: 'public/fonts', to: 'assets/fonts' },
+    ],
+  }),
+  new MiniCssExtractPlugin({
+    filename: '[name].[contenthash].css',
+    chunkFilename: '[id].css',
+  }),
+  new LodashModuleReplacementPlugin(),
+];
+
+if (process.env.ANALYZE_BUNDLE) {
+  console.log("Analyzing bundle included...")
+  plugins.push(new BundleAnalyzerPlugin());
+}
+
 const config = {
   entry: [
     './src/index.jsx',
@@ -38,34 +71,7 @@ const config = {
       chunks: 'all',
     },
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      favicon: './public/favicon.png',
-      // templateContent: ({ htmlWebpackPlugin }) => `
-      //   <!DOCTYPE html>
-      //   <html>
-      //     <head>
-      //       <meta charset="UTF-8">  
-      //       <title>${htmlWebpackPlugin.options.title}</title>
-      //     </head>
-      //     <body>
-      //       <div id="root"></div>
-      //     </body>
-      //   </html>`,
-      template: './public/index.html',
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: 'public/fonts', to: 'assets/fonts' },
-      ],
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
-      chunkFilename: '[id].css',
-    }),
-    new LodashModuleReplacementPlugin(),
-    new BundleAnalyzerPlugin()
-  ],
+  plugins,
   resolve: {
     // extensions: [], // This is to enforce the use of explicit file extensions
     extensions: ['.js', '.jsx'],

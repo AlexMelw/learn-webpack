@@ -6,7 +6,7 @@ const UserProvider = (props) => {
 
     const [user, setUser] = React.useState(null);
 
-    return <UserContext.Provider value={ {
+    return <UserContext.Provider value={{
         user,
         setUser
     }}>

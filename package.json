@@ -11,7 +11,7 @@
     "start": "webpack-dev-server --mode development --config webpack.dev.config.js",
     "build-dev": "webpack --config webpack.dev.config.js",
     "build-prod": "webpack --config webpack.prod.config.js",
-    "build-analyze": "npm run build-prod --analyze",
+    "build-analyze": "cross-env ANALYZE_BUNDLE=true npm run build-prod",
     "build-public": "webpack --config webpack.public.config.js --mode production",
     "build-admin": "webpack --config webpack.admin.config.js --mode production",
     "build-frontend": "webpack --config webpack.frontend.config.js --mode production",
@@ -51,6 +51,7 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
