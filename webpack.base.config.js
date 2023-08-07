@@ -48,6 +48,7 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
     clean: true, // Clean the output directory before emit.
+    assetModuleFilename: 'assets/[name][contenthash][ext]', // This will output assets to the "dist/assets" folder.
   },
   module: {
     rules: [
