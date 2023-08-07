@@ -1,10 +1,15 @@
+const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-const path = require('path');
+const DEVELOPMENT_MODE = "development";
+const { env: { NODE_ENV = DEVELOPMENT_MODE } } = process;
+
+console.log('NODE_ENV:', NODE_ENV, '\n');
 
 const plugins = [
   new HtmlWebpackPlugin({
@@ -57,14 +62,39 @@ const config = {
         exclude: /node_modules/,
         use: ['babel-loader']
       },
+      // {
+      //   test: /\.css$/,
+      //   use: [
+      //     { loader: NODE_ENV === DEVELOPMENT_MODE ? 'style-loader' : MiniCssExtractPlugin.loader },
+      //     { loader: 'css-loader' },
+      //   ]
+      // },
+      // {
+      //   test: /\.(sass|scss)$/,
+      //   use: [
+      //     { loader: NODE_ENV === DEVELOPMENT_MODE ? 'style-loader' : MiniCssExtractPlugin.loader },
+      //     { loader: 'css-loader' },
+      //     { loader: 'sass-loader' }
+      //   ]
+      // },
       {
         test: /\.(css|sass|scss)$/,
         use: [
-          // 'style-loader',
-          { loader: MiniCssExtractPlugin.loader,  /* use either this or style-loader */ },
-          { loader: 'css-loader', },
-          { loader: 'sass-loader', }
-        ]
+          { loader: NODE_ENV === DEVELOPMENT_MODE ? 'style-loader' : MiniCssExtractPlugin.loader },
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  // Other plugins,
+                  [ 'postcss-preset-env', { /* Options */ } ]
+                ]
+              }
+            }
+          },
+          { loader: 'sass-loader' }
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
