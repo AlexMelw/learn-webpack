@@ -40,6 +40,7 @@ if (process.env.ANALYZE_BUNDLE) {
 }
 
 const config = {
+  devtool: 'eval-source-map',
   entry: [
     './src/index.jsx',
   ],
