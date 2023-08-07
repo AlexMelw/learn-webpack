@@ -64,7 +64,11 @@ const config = {
           { loader: 'css-loader', },
           { loader: 'sass-loader', }
         ]
-      }
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource', // https://webpack.js.org/guides/asset-modules/
+      },
     ],
   },
   optimization: {

@@ -6,6 +6,11 @@ import { CursorPointLoggerWithCursorPosition } from '@components/CursorPointLogg
 import { LoginForm } from '@components/LoginForm';
 import { useUser } from '@contexts/userContext';
 
+import cocktails from "/public/images/cocktails.svg";
+import aeronaut from "/public/images/aeronaut-2016.png";
+import cat from "/public/images/cat.jpg";
+import spiderMan from "/public/images/spider-man.gif";
+
 // Do not declare lazy components inside other components
 // instead always declare them at the top level of the module
 const Announcement = lazy(() => new Promise(resolve => {
@@ -24,9 +29,15 @@ export const App = ({ name }) => {
             User {user.name} is authenticated
         </p>;
 
-    const greeting = <h2 className='lime-text' style={{ textAlign: 'center', margin: '0', marginTop: '9.5rem', }}>
+    const greeting = <h2 className='lime-text' style={{ textAlign: 'center', margin: '0', marginTop: '2.5rem', }}>
         Hello, <span className='breeze-text'>{name}</span>!
     </h2>;
+
+    const headerImage = <img src={cocktails} alt="cocktails" style={{
+        display: "block",
+        width: "10rem",
+        margin: "auto",
+    }} />;
 
     return (
         <div style={{
@@ -47,6 +58,8 @@ export const App = ({ name }) => {
                 background: 'linear-gradient(to right, #58d8dc, #9afba0)',
                 paddingTop: '3.225rem',
             }}>
+                {headerImage}
+
                 {userAuthenticationConfirmation}
 
                 {greeting}
